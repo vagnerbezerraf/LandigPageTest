@@ -1,12 +1,14 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using LandingPage.API.DataBase;
 using LandingPage.API.Models;
+using System.Data;
 
 namespace LandingPage.API.DataBase
 {
     public class DataBase : IDataBase
     {
+        private int _limit = 200000;
+
         public DataBase()
         {
             this.connString = "Data Source=localhost;Initial Catalog=LandingPage;Integrated Security=False;User ID=sa;Password=SqlServer2022!;MultipleActiveResultSets=True;Connect Timeout=600;Encrypt=False;TrustServerCertificate=False";
@@ -24,19 +26,19 @@ namespace LandingPage.API.DataBase
             }
         }
 
-        public bool AddParticipant(ParticipantModel participant)
+        public ParticipantModel AddParticipant(ParticipantModel participant)
         {
-            var sql = @"INSERT INTO 
-                        [Participant] 
-                            ([Name],[Email],[City],[State],[BrithDate],[WhoNominated]) 
-                        VALUES 
-                            (@Name,@Email,@City,@State,@BrithDate,@WhoNominated)";
-
             using (var connection = new SqlConnection(connString))
             {
-                if (connection.Execute(sql, participant) > 0)
-                    return true;
-                return false;
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("id", participant.Name);
+                parameters.Add("id", participant.State);
+                parameters.Add("id", participant.City);
+                parameters.Add("id", participant.BirthDate);
+                parameters.Add("id", participant.Email);
+                parameters.Add("id", participant.WhoNominated);
+                parameters.Add("id", _limit); 
+                return connection.QuerySingleOrDefault<ParticipantModel>("InsertParticipant", parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
