@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandingPage.API", "LandingPage.API.csproj", "{EDC27B51-8157-4EDB-AEEB-B06D644D66E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandingPage.API", "src\LandigPage.API\LandingPage.API.csproj", "{BEDBCC0B-E492-4E9E-9487-92EA609DC03D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDC27B51-8157-4EDB-AEEB-B06D644D66E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDC27B51-8157-4EDB-AEEB-B06D644D66E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDC27B51-8157-4EDB-AEEB-B06D644D66E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDC27B51-8157-4EDB-AEEB-B06D644D66E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDBCC0B-E492-4E9E-9487-92EA609DC03D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDBCC0B-E492-4E9E-9487-92EA609DC03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDBCC0B-E492-4E9E-9487-92EA609DC03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDBCC0B-E492-4E9E-9487-92EA609DC03D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
