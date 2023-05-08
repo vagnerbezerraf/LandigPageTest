@@ -1,0 +1,10 @@
+{
+    "data": [ 
+        {"label": "Previous Year", "value": "PY"}, 
+        {"label": "Budget", "value": "BG"}, 
+        {"label": "QBRs", "value": "QB"}, 
+        {"label": "Actual", "value": "AC"}, 
+        {"label": "Cenário Teste 123", "value": "cenario-teste-123"}, 
+        {"label": "Cenário Teste 245", "value": "cenario-teste-245"}
+    ]
+}

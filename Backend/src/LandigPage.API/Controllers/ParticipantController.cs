@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LandingPage.API.DataBase;
 using LandingPage.API.Models;
+using LandingPage.API.DataBase.Interfaces;
 
 namespace LandingPage.API.Controllers
 {
@@ -8,38 +9,24 @@ namespace LandingPage.API.Controllers
     [ApiController]
     public class ParticipantController : ControllerBase
     {
-        public IDataBase DataBase { get; }
+        public IParticipantRepository _dataBase { get; }
 
-        public ParticipantController(IDataBase database)
+        public ParticipantController(IParticipantRepository database)
         {
-            DataBase = database;
+            _dataBase = database;
         }
 
         [HttpGet]
-        public IEnumerable<ParticipantModel> Get()
+        public IEnumerable<ParticipantModel> Get([FromQuery] ParticipantFilterModel modelFilter)
         {
-            return DataBase.GetParticipants();
-        }
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return _dataBase.GetParticipants(modelFilter);
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ParticipantModel Post(ParticipantModel model)
         {
+            return _dataBase.AddParticipant(model);
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

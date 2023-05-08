@@ -1,5 +1,5 @@
 using LandingPage.API.DataBase;
-using Microsoft.Extensions.Caching.Memory;
+using LandingPage.API.DataBase.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
-builder.Services.AddScoped<IDataBase, DataBase>();
-builder.Services.AddSingleton<ICacheFeedRepository, CachedFeedRepository>();
+builder.Services.AddScoped<IParticipantRepository, ParticipantRepository>();
+builder.Services.AddScoped<INetPromoterScoreRepository, NetPromoterScoreRepository>();
+builder.Services.AddScoped<IFeedRepository, FeedRepository>();
+builder.Services.AddSingleton<ICachedFeedRepository, CachedFeedRepository>();
 
 var app = builder.Build();
 
@@ -22,6 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(confg =>confg.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

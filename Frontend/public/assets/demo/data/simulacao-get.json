@@ -1,0 +1,73 @@
+[
+    {
+       "id":"1",
+       "sellings":{
+          "simulationItems":[
+             {
+                "title":"PreÃ§o venda",
+                "percentValue":"7",
+                "aditionalValue":"80",
+                "totalValue":"870",
+                "initialDate":"2019-11-24T02:00:00.000Z",
+                "finalDate":"2019-11-25T02:00:00.000Z"
+             },
+             {
+                "title":"RCB",
+                "percentValue":"9",
+                "aditionalValue":"82",
+                "totalValue":"1900",
+                "initialDate":"2019-11-25T02:00:00.000Z",
+                "finalDate":"2019-11-25T02:00:00.000Z"
+             },
+             {
+                "title":"CPV",
+                "percentValue":"2",
+                "aditionalValue":"20",
+                "totalValue":"221",
+                "initialDate":"2019-11-27T02:00:00.000Z",
+                "finalDate":"2019-11-25T02:00:00.000Z",
+                "name":"Nome teste",
+                "create":"Data teste",
+                "user":"Usuario teste"
+             },
+             {
+                "title":"CPV",
+                "percentValue":"2",
+                "aditionalValue":"20",
+                "totalValue":"221",
+                "initialDate":"2019-11-27T02:00:00.000Z",
+                "finalDate":"2019-11-25T02:00:00.000Z"
+             }
+          ],
+          "baseValue":"PY",
+          "group":{
+             "empresa":"PRS",
+             "produto":"",
+             "linhaProduto":"",
+             "familia":"",
+             "divisaoProduto":""
+          },
+          "createDate":"2019-11-24T20:53:15.189Z"
+       },
+       "expenses":{
+          "baseValue":"Budget",
+          "group":{
+             "empresa":"NY",
+             "produto":"LDN",
+             "linhaProduto":"",
+             "familia":"",
+             "divisaoProduto":""
+          },
+          "id":"1",
+          "initialDate":"2019-11-28T02:00:00.000Z",
+          "finalDate":"2019-11-30T02:00:00.000Z",
+          "isChecked":true,
+          "percentValue":"3",
+          "aditionalValue":"30",
+          "totalValue":"300",
+          "cenarioName":"Mercedes",
+          "user":"Frank Castle",
+          "createDate":"2019-11-24T20:53:15.413Z"
+       }
+    }
+ ]

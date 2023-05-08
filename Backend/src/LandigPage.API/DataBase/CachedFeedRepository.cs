@@ -3,18 +3,16 @@ using Microsoft.Extensions.Caching.Memory;
 using LandingPage.API.Models;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using LandingPage.API.DataBase.Interfaces;
 
 namespace LandingPage.API.DataBase
 {
-    public class CachedFeedRepository : ICacheFeedRepository
+    public class CachedFeedRepository : BaseRepository, ICachedFeedRepository
     {
-        private readonly string _connString;
-        private readonly IMemoryCache _memoryCache;
-        public CachedFeedRepository(IMemoryCache cache)
+        public CachedFeedRepository(IMemoryCache cache) : base(cache)
         {
-            _connString = "Data Source=localhost;Initial Catalog=LandingPage;Integrated Security=False;User ID=sa;Password=SqlServer2022!;MultipleActiveResultSets=True;Connect Timeout=600;Encrypt=False;TrustServerCertificate=False";
-            _memoryCache = cache;
         }
+
         public IEnumerable<FeedModel> GetFeeds()
         {
             //Consulta no banco de dados e converte para um objeto list.

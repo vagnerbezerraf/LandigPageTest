@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LandingPage.API.DataBase;
 using LandingPage.API.Models;
+using LandingPage.API.DataBase.Interfaces;
 
 namespace LandingPage.API.Controllers
 {
@@ -8,38 +9,23 @@ namespace LandingPage.API.Controllers
     [ApiController]
     public class NpsController : ControllerBase
     {
-        public IDataBase DataBase { get; }
+        public INetPromoterScoreRepository _dataBase { get; }
 
-        public NpsController(IDataBase database)
+        public NpsController(INetPromoterScoreRepository database)
         {
-            DataBase = database;
+            _dataBase = database;
         }
 
         [HttpGet]
         public IEnumerable<NetPromoterScoreModel> Get()
         {
-            return DataBase.GetNps();
-        }
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return _dataBase.GetNps();
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public bool Post(NetPromoterScoreModel nps)
         {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return _dataBase.AddNps(nps);
         }
     }
 }

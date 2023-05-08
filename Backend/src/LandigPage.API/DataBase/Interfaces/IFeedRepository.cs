@@ -1,8 +1,8 @@
 ﻿using LandingPage.API.Models;
 
-namespace LandingPage.API.DataBase
+namespace LandingPage.API.DataBase.Interfaces
 {
-    public interface ICacheFeedRepository
+    public interface IFeedRepository
     {
         IEnumerable<FeedModel> GetFeeds();
     }

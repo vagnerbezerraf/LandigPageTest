@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LandingPage.API.DataBase;
 using LandingPage.API.Models;
+using LandingPage.API.DataBase.Interfaces;
 
 namespace LandingPage.API.Controllers
 {
@@ -8,40 +9,21 @@ namespace LandingPage.API.Controllers
     [ApiController]
     public class FeedController : ControllerBase
     {
-        private IDataBase _database;
-        private ICacheFeedRepository _cache;
+        private IFeedRepository _database;
+        private ICachedFeedRepository _cacheRepository;
 
-        public FeedController(IDataBase database, ICacheFeedRepository cache)
+        public FeedController(IFeedRepository database, ICachedFeedRepository cache)
         {
             _database = database;
-            _cache = cache;
+            _cacheRepository = cache;
         }
 
         [HttpGet]
-        public IEnumerable<FeedModel> Get()
+        public IEnumerable<FeedModel> Get(bool isCached)
         {
-            return _cache.GetFeeds();
-        }
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if(isCached)
+                return _cacheRepository.GetFeeds();
+            return _database.GetFeeds();
         }
     }
 }
