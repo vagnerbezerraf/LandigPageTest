@@ -57,3 +57,11 @@ Para tanto então, foi adicionado um recurso de Cache de tempo de vida de aplica
 
 Com relação ao front end foi escolhido o uso do React com uma biblioteca componentes Prime react, com o objetivo de abstrair do desafio a criação do zero de componentes e dar mais agilidade a implementação de recursos como gréficos e datatables.
 
+Dashboard
+![alt text](https://github.com/vagnerbezerraf/LandigPageTest/blob/349d94c3dd1dbd42cb1ae4c3dfe61c26f8077500/Docs/Screeshot_dashboard.png)
+
+Cadastro Participante
+![alt text](https://github.com/vagnerbezerraf/LandigPageTest/blob/349d94c3dd1dbd42cb1ae4c3dfe61c26f8077500/Docs/Screeshot_participante.png)
+
+Pesquisa NPS
+![alt text](https://github.com/vagnerbezerraf/LandigPageTest/blob/349d94c3dd1dbd42cb1ae4c3dfe61c26f8077500/Docs/Screeshot_nps.png)
