@@ -10,4 +10,50 @@ A base dados é estruturada para comportar o modelo simplificado de Participante
 
 Abaixo temos o DER do banco:
 
+![alt text](https://github.com/vagnerbezerraf/LandigPageTest/blob/662d588ff4489be120ed87eea66d7f09a0251c48/Docs/LandingPage%20-%20LandingPage%20-%20dbo.png)
+
+
+A solução praticada para o desafio de otimizar a resposta no endpoint do Feed:
+No entendimento feito, a abordagem de colocar em cache a saída dos dados, criaria uma melhora significante na consulta a serviço uma vez que não teriamos a cada request uma consulta de todos os dados no banco.
+
+Como é uma abordagem inicial, colocamos um tempo de vida de 10 segundos, mas que podemos ter uma implementação que busca uma inversão do controle do tempo de vida baseado na entrada do registro do feed.
+
+Para tanto então, foi adicionado um recurso de Cache de tempo de vida de aplicação usando injeção de depdência com Singleton, para garantir a criação de um único cache por aplicação ativa, abaixo o refactoring do método Feed dentro da abordagem do projeto:
+
+```c#
+    public class CachedFeedRepository : BaseRepository, ICachedFeedRepository
+    {
+        public CachedFeedRepository(IMemoryCache cache) : base(cache)
+        {
+        }
+
+        public IEnumerable<FeedModel> GetFeeds()
+        {
+            //Consulta no banco de dados e converte para um objeto list.
+            //Adiciona uma camada de cache responder de forma imediata,
+            //com o objetivo de prover dados que não tenham mudanças constantes,
+            //como um feed de notícias
+            //ou um feed de rede social, 
+            var feeds = _memoryCache.GetOrCreate("FeedKey", entry =>
+            {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
+                entry.SetPriority(CacheItemPriority.High);
+                return GetDataBaseFeeds().OrderBy(a => a.Date).ToList();
+            });
+
+            return feeds;
+        }
+        private IEnumerable<FeedModel> GetDataBaseFeeds()
+        {
+            var sql = "select * from Feed";
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<FeedModel>(sql);
+            }
+        }
+    }
+```
+
+Com relação ao front end foi escolhido o uso do React com uma biblioteca componentes Prime react, com o objetivo de abstrair do desafio a criação do zero de componentes e dar mais agilidade a implementação de recursos como gréficos e datatables.
 
